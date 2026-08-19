@@ -26,16 +26,14 @@
 --   time <- getZonedTime
 --   TLIO.putStrLn $ format "Hello, {}! It is {:%H:%M:%S} now." (name, time)
 -- @
---
-module Data.Text.Format.Heavy
-  (
-    module Data.Text.Format.Heavy.Types,
-    module Data.Text.Format.Heavy.Formats,
-    module Data.Text.Format.Heavy.Build,
-    module Data.Text.Format.Heavy.Instances
-  ) where
+module Data.Text.Format.Heavy (
+  module Data.Text.Format.Heavy.Types,
+  module Data.Text.Format.Heavy.Formats,
+  module Data.Text.Format.Heavy.Build,
+  module Data.Text.Format.Heavy.Instances,
+) where
 
-import Data.Text.Format.Heavy.Types
-import Data.Text.Format.Heavy.Formats
 import Data.Text.Format.Heavy.Build (format)
-import Data.Text.Format.Heavy.Instances hiding (genericIntFormat, genericFloatFormat)
+import Data.Text.Format.Heavy.Formats
+import Data.Text.Format.Heavy.Instances hiding (genericFloatFormat, genericIntFormat)
+import Data.Text.Format.Heavy.Types
