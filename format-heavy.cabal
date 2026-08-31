@@ -20,7 +20,8 @@ category:       Text
 homepage:       https://github.com/lbobylev/format-heavy#format-heavy
 bug-reports:    https://github.com/lbobylev/format-heavy/issues
 author:         Ilya Portnov
-maintainer:     Leonid Bobylev
+maintainer:     Leonid Bobylev <l3o6@proton.me>
+tested-with:    GHC == 9.10.3
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
