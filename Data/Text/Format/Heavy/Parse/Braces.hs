@@ -31,29 +31,35 @@ import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Lazy.Builder as B
 import Text.Parsec
 
-escapes :: [(String, Char)]
-escapes =
-  [ ("{{", '{')
-  , ("}}", '}')
-  , ("\\{", '{')
-  , ("\\}", '}')
-  ]
+replaceWith :: a -> String -> Parser a
+replaceWith c s = c <$ string s
+
+unescapeBraces :: String -> String -> Parser Char
+unescapeBraces open close =
+  try (replaceWith '{' open)
+    <|> try (replaceWith '}' close)
 
 anyChar' :: Parser Char
-anyChar' = choice [try (c <$ string s) | (s, c) <- escapes] <|> noneOf "{}"
+anyChar' =
+  unescapeBraces "{{" "}}"
+    <|> unescapeBraces "\\{" "\\}"
+    <|> noneOf "{}"
 
 formatSpecChar :: Parser String
-formatSpecChar = try nestedBraces <|> ((: []) <$> anyChar')
+formatSpecChar = try nestedBraces <|> asString anyChar'
  where
   nestedBraces = do
     char '{'
-    inner <- concat <$> many nestedFormatSpecChar
+    inner <-
+      concat
+        <$> many
+          ( try nestedBraces
+              <|> replaceWith "{{" "{"
+              <|> asString (noneOf "{}")
+          )
     char '}'
     return $ "{" ++ inner ++ "}"
-
-  nestedFormatSpecChar = try nestedBraces <|> escapedOpenBrace <|> ((: []) <$> noneOf "{}")
-
-  escapedOpenBrace = "{" <$ string "{{"
+  asString = ((: []) <$>)
 
 pVerbatim :: Parser FormatItem
 pVerbatim = (FString . TL.pack) `fmap` many1 anyChar'
