@@ -1,5 +1,5 @@
 name:                format-heavy
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            Full-weight string formatting library, analog of Python's string.format
 description: >
                      This package contains full-featured string formatting function, similar to
