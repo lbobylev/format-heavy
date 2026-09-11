@@ -1,5 +1,5 @@
 {
-  description = "Haskell Playground";
+  description = "Haskell";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -17,7 +17,8 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
-                stack
+                ghc
+                cabal-install
             ];
           };
         }

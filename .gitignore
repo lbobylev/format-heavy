@@ -4,6 +4,5 @@
 dist/
 dist-*/
 .cabal-sandbox/
-.stack-work/
 cabal.sandbox.config
 .ghc.environment.*
