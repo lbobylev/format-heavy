@@ -1,5 +1,9 @@
 # Revision history for format-heavy
 
+## 0.1.0.3  -- 2026-10-27
+
+* Allow containers-0.8 for GHC 9.14 compatibility.
+
 ## 0.1.0.2  -- 2026-09-11
 
 * Switch development and CI tooling to Cabal only.
