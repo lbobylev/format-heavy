@@ -1,5 +1,9 @@
 # Revision history for format-heavy
 
+## 0.1.0.4  -- 2026-10-27
+
+* Allow template-haskell-2.24 and time-1.15 for GHC 9.14 compatibility.
+
 ## 0.1.0.3  -- 2026-10-27
 
 * Allow containers-0.8 for GHC 9.14 compatibility.
